@@ -2,7 +2,7 @@
 
 **A daily apartment hunt that runs itself.** Every morning Claude searches the rental sites for you and adds new listings to a Google Sheet. Each listing gets a star rating, the price, and how far it is to walk to the place you care about, such as your kid's school or your office.
 
-**You don't need to be a developer.** There is no code to run and nothing to install beyond the Claude app. You copy a spreadsheet, paste one set of instructions into Claude, and fill in a few details about what you're looking for. That's it.
+**You don't need to be a developer.** There is no code to run and nothing to install beyond the Claude app. You import a spreadsheet, then have a short chat with Claude about what you're looking for, and it sets up the rest: the rental sites for your area, the streets to watch and the star ratings. Then you paste the result into a daily task. That's it.
 
 **Made for sharing.** The results live in an ordinary Google Sheet, so you can share it with your partner, family or realtor. Everyone sees the same list, can mark the places they don't like, and Claude learns from those choices.
 
@@ -35,41 +35,42 @@ It takes about 15 minutes, and you only do it once.
 3. In the new spreadsheet, click **File → Import → Upload**, and choose the file you just downloaded.
 4. Under _Import location_, pick **Replace spreadsheet**, then click **Import data**.
 5. Click the title at the top left ("Untitled spreadsheet") and give it a name, for example "Our rent search".
+6. Copy the address from your browser's address bar. It looks like `https://docs.google.com/spreadsheets/d/...`, and Claude will ask for it in step 3.
 
-You now have the five tabs described above, empty and ready.
-
-### 2. Make the rules yours (optional, can be done later)
-
-- **rating rules** tab: the example rules give stars for a walk under 10 minutes, for a house-type rental, and for rent under 2,750. Change the numbers to suit you, or add your own rules. The instructions are on the right side of the tab.
-- **search rules** tab: if you know a website page or a search that should be checked every day, add it here. The three rows there are examples; change or delete them.
-
-### 3. Copy your spreadsheet's link
-
-Copy the address from your browser's address bar while the spreadsheet is open. It looks like `https://docs.google.com/spreadsheets/d/...`. You'll paste it in step 5.
-
-### 4. Connect Google Sheets to Claude
+### 2. Connect Google Sheets to Claude
 
 1. Open the Claude app and go to **Settings → Connectors**.
 2. Find **Google Sheets** (or **Google Drive**) and click **Connect**.
 3. Sign in with the Google account that owns your spreadsheet and allow access.
 
-### 5. Create the daily task
+### 3. Set up your search with Claude
 
-1. In the Claude app, open **Cowork** and start a new **scheduled task**.
-2. Name it, for example "Daily rent search".
-3. Open [`prompt.md`](prompt.md), click the copy button at the top right of the grey box, and paste everything into the task's instructions.
-4. At the very top of what you pasted, fill in **YOUR SEARCH**: your spreadsheet link from step 3, the place you want to live near and its address, the number of bedrooms, your highest rent, your longest walk, whether basement apartments are OK, the neighbourhoods to search, and the rental sites people use in your city. Replace everything in `[square brackets]`. If you don't know which sites to use, write "your choice".
-5. Set it to run **daily** at a time that suits you, for example 7:00 in the morning.
-6. Make sure the **Google Sheets** connector is turned on for this task.
-7. Save the task.
+1. In the Claude app, start a **new chat**.
+2. Open [`setup-helper.md`](setup-helper.md), click the copy button at the top right of the grey box, paste it into the chat and send it.
+3. Answer Claude's questions: the place you want to live near, bedrooms, budget, how far you'd walk, and what matters to you. Claude finds the rental sites and streets for your area, shows you its plan, and fills in your spreadsheet's **search rules** and **rating rules** once you say yes.
+4. At the end, Claude gives you a short box that starts with **YOUR SEARCH**. Copy it.
 
-### 6. Try it once
+Prefer to do it by hand? Copy the empty YOUR SEARCH box from [`prompt.md`](prompt.md) and replace everything in `[square brackets]` yourself.
 
-Run the task now instead of waiting for tomorrow (look for **Run now**). After a few minutes, open your spreadsheet: new listings should be in the **rent proposals** tab, and the **log** tab should have a line for today. If Claude says something in `[square brackets]` still needs filling in, edit the task and finish step 5.4.
+### 4. Create the daily task
 
-### 7. Share it (optional)
+1. In the Claude app, open **Cowork** and start a new **scheduled task**. Name it, for example "Daily rent search".
+2. Paste your **YOUR SEARCH** box from step 3 into the task's instructions.
+3. Open [`prompt.md`](prompt.md), copy the second box (**the daily instructions**), and paste it below YOUR SEARCH.
+4. Set it to run **daily** at a time that suits you, for example 7:00 in the morning.
+5. Make sure the **Google Sheets** connector is turned on for this task, then save it.
+
+### 5. Try it once
+
+Run the task now instead of waiting for tomorrow (look for **Run now**). After a few minutes, open your spreadsheet: new listings should be in the **rent proposals** tab, and the **log** tab should have a line for today.
+
+### 6. Share it (optional)
 
 In your spreadsheet, click **Share** (top right), add the email addresses of the people searching with you, and choose **Editor** so they can mark listings too. Claude keeps working in the same sheet, so everyone always sees the latest list.
+
+### Changing your search later
+
+Run the setup helper again in a new chat, for example to raise your budget or add a neighbourhood. It shows your current settings, changes what you ask, and gives you a new YOUR SEARCH box. Open your daily task and replace its YOUR SEARCH part with the new one.
 
 ## Using it day to day
 
@@ -77,7 +78,7 @@ In your spreadsheet, click **Share** (top right), add the email addresses of the
 - **Don't like one?** Type `yes` in its _skipped_ column and say why in _skipped reason_, for example "too far" or "too noisy, on a busy road". The row turns red and moves down. Claude also learns from your reasons and leaves similar listings out from then on.
 - **Claude left out a good one?** In the **bot skipped** tab, type `yes` in _bot was wrong_ and add a comment. The next run moves it to the main list and adjusts its rule.
 - **A listing is gone?** Claude marks it "No" in _still available_ when the ad says it's rented or disappears. It never deletes anything.
-- **Want different stars?** Change the **rating rules**; ratings update right away.
+- **Want different stars?** Change the **rating rules** tab yourself, or ask the setup helper; ratings update right away.
 - **Read the log** for a daily summary, including anything that needs your attention.
 
 ## Good to know

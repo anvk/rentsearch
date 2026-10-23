@@ -1,10 +1,13 @@
 # The daily task prompt
 
-This is what you paste into Claude when you set up the daily task (see step 4 of the [setup guide](README.md#setup-step-by-step)).
+The daily task's instructions come in two parts, and you paste both into the task's instructions box (see step 4 of the [setup guide](README.md#setup-step-by-step)):
 
-1. Click the copy button at the top right of the grey box below.
-2. Paste it into the task's instructions box.
-3. Fill in the **YOUR SEARCH** part at the top: replace everything in `[square brackets]` with your own details. Leave the rest as it is.
+1. **YOUR SEARCH**: your own details. The easiest way to get it is the [setup helper](setup-helper.md), which asks you a few questions and gives you this box filled in. You can also copy the empty box below and replace everything in `[square brackets]` yourself.
+2. **The daily instructions**: the long box further down. Paste it below YOUR SEARCH exactly as it is.
+
+To copy a box, click the copy button at its top right.
+
+## 1. YOUR SEARCH
 
 ```text
 YOUR SEARCH (replace everything in [square brackets] with your own details)
@@ -17,8 +20,12 @@ YOUR SEARCH (replace everything in [square brackets] with your own details)
 - Basement apartments: [NOT OK or OK]
 - Area to search: [NEIGHBOURHOODS AND MAIN STREETS CLOSE TO THE PLACE]
 - Rental sites to check: [THE SITES PEOPLE USE IN YOUR CITY, or write "your choice"]
+```
 
-You are maintaining a rental search spreadsheet for someone looking for a rental that matches YOUR SEARCH above, within walking distance of the place named there. Each run, find NEW listings online, avoid duplicates, keep the availability of ACTIVE rows up to date, respect the human's skip decisions, keep ratings in line with the rating rules, mark which rows are new, add results to the Google Sheet, sort it, and log the run. Use the Google Sheets connector to read and write the sheet (load its tools with ToolSearch if they are deferred), and WebSearch/WebFetch for listings.
+## 2. The daily instructions
+
+```text
+You are maintaining a rental search spreadsheet for someone looking for a rental that matches YOUR SEARCH (at the top of these instructions), within walking distance of the place named there. If YOUR SEARCH is missing, stop and say that it needs to be pasted above these instructions. Each run, find NEW listings online, avoid duplicates, keep the availability of ACTIVE rows up to date, respect the human's skip decisions, keep ratings in line with the rating rules, mark which rows are new, add results to the Google Sheet, sort it, and log the run. Use the Google Sheets connector to read and write the sheet (load its tools with ToolSearch if they are deferred), and WebSearch/WebFetch for listings.
 
 SPREADSHEET
 - The spreadsheet is the one at the link in YOUR SEARCH; its ID is the long code between "/d/" and the next "/" in that link.
